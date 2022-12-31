@@ -192,10 +192,10 @@ def DrawMandelbrotX():
     display.update()
 
 # NOT NEEDED AT ALL??
-def SetupDisplay():
-    global oled
-    i2c=I2C(1,sda=Pin(2), scl=Pin(3), freq=400000)
-    oled = SSD1306_I2C(128, 64, i2c)
+#def SetupDisplay():
+#    global oled
+#    i2c=I2C(1,sda=Pin(2), scl=Pin(3), freq=400000)
+#    oled = SSD1306_I2C(128, 64, i2c)
     
 def SetupFB():
     global brotBitmap, brotFB, cursorFB
@@ -206,17 +206,17 @@ def SetupFB():
     
     #-- Cursor --
     cursorBitmap=bytearray(int(WIDTH*HEIGHT/8))
-    cursorFB = framebuf.FrameBuffer(cursorBitmap, WIDTH,HEIGHT, framebuf.MVLSB)
-    cursorFB.line(0,0, WIDTH, HEIGHT, 1)  
+    #cursorFB = framebuf.FrameBuffer(cursorBitmap, WIDTH,HEIGHT, framebuf.MVLSB)
+    #cursorFB.line(0,0, WIDTH, HEIGHT, 1)  
 
 def SetupUI():
     global mPot0, mPot1, mZoomPot
     global buttonZoomIn, buttonZoomOut, buttonCenter, buttonRez
     
     #-- Setup UI --
-    mPot0 = ADC(26)
-    mPot1 = ADC(27)
-    mZoomPot = ADC(28)
+    mPot0 = 0 #ADC(26)
+    mPot1 = 0 #ADC(27)
+    mZoomPot = 0 #ADC(28)
     
     buttonZoomIn = Pin(13, Pin.IN, Pin.PULL_UP)
     buttonZoomOut = Pin(14, Pin.IN, Pin.PULL_UP)
@@ -225,7 +225,7 @@ def SetupUI():
 
 def Setup():
     global oled, brotFB, cursorFB, threadState
-    SetupDisplay()
+    # SetupDisplay()
     SetupFB()
     SetupUI()
 
